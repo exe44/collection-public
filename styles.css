@@ -112,7 +112,7 @@ main {
 
 .image {
   border-radius: 12px;
-  height: 160px;
+  aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, #d6dcff, #ffe0f0);
   background-size: cover;
   background-position: center;
