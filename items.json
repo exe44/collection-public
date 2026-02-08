@@ -1,6 +1,34 @@
 {
   "items": [
     {
+      "id": "34d95657-d16c-48c4-adba-cb79bc6b07d6",
+      "title": "修那之旅",
+      "creator": "",
+      "year": 2024,
+      "tags": [
+        "book"
+      ],
+      "images": [
+        "https://www.tohan.com.tw/data/goods/gallery_org/202411/1732263975000382862.jpg"
+      ],
+      "note": "",
+      "barcode": "9786263794153"
+    },
+    {
+      "id": "6aa470ba-ef8d-401d-8021-8939b642c00c",
+      "title": "搭下一班巴士離開",
+      "creator": "Lawrence Block",
+      "year": 2016,
+      "tags": [
+        "book"
+      ],
+      "images": [
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqBd0hEKymfX7ysTQ_Kl2t17-wPpl2aLxlCrRu-VVAm0DwGNn2miKIK_7r2JvfCWwDvoYbEZkp4LuxWzdl3eQxlj7AkzJAdAgR3_d7Ikb8wVVSV7nUHJTiPjUbHcolr2jKVaMHeVkueyDZ/s1600/4.jpg"
+      ],
+      "note": "買了兩本一樣的",
+      "barcode": "9789862355428"
+    },
+    {
       "id": "bd330ae3-b0e6-4cfa-affe-1af78f8e12ba",
       "title": "First Love",
       "creator": "Utada Hikaru",
@@ -85,18 +113,6 @@
       "images": [
         "https://i.discogs.com/bF_rPdBHg-SdteOkBUWgCIgu-cSAfsewnFbczUv_gvc/rs:fit/g:sm/q:90/h:606/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3Mzc2/MTAtMTQ5NTI2NTE0/NC03MDIzLmpwZWc.jpeg"
       ],
-      "note": "",
-      "barcode": ""
-    },
-    {
-      "id": "ce257ad7-a04c-4b0a-8ab8-41a76387c8e3",
-      "title": "未知",
-      "creator": "？",
-      "year": null,
-      "tags": [
-        "other"
-      ],
-      "images": [],
       "note": "",
       "barcode": ""
     }
