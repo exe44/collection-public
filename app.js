@@ -24,6 +24,7 @@ const getItemTags = (item) => {
 }
 
 const buildTagRow = () => {
+  if (!tagRow) return
   tagRow.innerHTML = ''
   const tags = new Set()
   items.forEach((item) => {
@@ -56,7 +57,7 @@ const buildTagRow = () => {
 }
 
 const render = () => {
-  const query = (searchInput.value || '').toLowerCase().trim()
+  const query = (searchInput?.value || '').toLowerCase().trim()
 
   const filtered = items.filter((item) => {
     const tags = getItemTags(item)
@@ -68,14 +69,15 @@ const render = () => {
     return haystack.includes(query)
   })
 
+  if (!grid) return
   grid.innerHTML = ''
 
   if (!filtered.length) {
-    empty.style.display = 'block'
+    if (empty) empty.style.display = 'block'
     return
   }
 
-  empty.style.display = 'none'
+  if (empty) empty.style.display = 'none'
   filtered.forEach((item) => {
     const card = document.createElement('article')
     card.className = 'card'
@@ -136,6 +138,8 @@ const load = async () => {
   render()
 }
 
-searchInput.addEventListener('input', render)
+if (searchInput) {
+  searchInput.addEventListener('input', render)
+}
 
 load()
