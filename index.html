@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collection Showcase</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="brand">Collection Showcase</div>
+      <h1>我的收藏展示</h1>
+      <p>這裡是只讀展示頁。內容由我的私人收藏庫同步更新。</p>
+      <div class="controls">
+        <input id="search" type="search" placeholder="搜尋標題、作者、標籤" />
+        <select id="typeFilter">
+          <option value="all">全部</option>
+          <option value="book">書籍</option>
+          <option value="cd">CD</option>
+          <option value="vinyl">黑膠</option>
+          <option value="other">其他</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section id="grid" class="grid"></section>
+      <div id="empty" class="empty">尚未有公開收藏。</div>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
