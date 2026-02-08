@@ -49,13 +49,45 @@ p {
   flex-wrap: wrap;
 }
 
-.controls input,
-.controls select {
+.controls input {
   border: 1px solid #e0e0e6;
   border-radius: 999px;
   padding: 10px 16px;
   min-width: 200px;
   font-family: inherit;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid #e0e0e6;
+  border-radius: 999px;
+  padding: 6px 14px;
+  background: #fff;
+  color: #30303a;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip.active {
+  background: #1b1b1f;
+  color: #fff;
+  border-color: #1b1b1f;
+}
+
+.chip.small {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 main {
@@ -65,7 +97,7 @@ main {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 

@@ -1,31 +1,68 @@
 const grid = document.getElementById('grid')
 const empty = document.getElementById('empty')
 const searchInput = document.getElementById('search')
-const typeFilter = document.getElementById('typeFilter')
+const tagRow = document.getElementById('tagRow')
 
 let items = []
+let tagFilter = 'all'
 
-const typeLabel = (type) => {
-  switch (type) {
+const primaryLabel = (tag) => {
+  switch (tag) {
     case 'book':
       return '書籍'
-    case 'cd':
-      return 'CD'
-    case 'vinyl':
-      return '黑膠'
+    case 'music':
+      return '音樂'
     default:
       return '其他'
   }
 }
 
+const getItemTags = (item) => {
+  if (Array.isArray(item.tags) && item.tags.length) return item.tags
+  if (item.primaryTag) return [item.primaryTag]
+  return []
+}
+
+const buildTagRow = () => {
+  tagRow.innerHTML = ''
+  const tags = new Set()
+  items.forEach((item) => {
+    getItemTags(item).forEach((tag) => tags.add(tag))
+  })
+
+  const tagsList = Array.from(tags).sort()
+
+  const allBtn = document.createElement('button')
+  allBtn.type = 'button'
+  allBtn.className = `chip ${tagFilter === 'all' ? 'active' : ''}`
+  allBtn.textContent = '全部'
+  allBtn.addEventListener('click', () => {
+    tagFilter = 'all'
+    render()
+  })
+  tagRow.append(allBtn)
+
+  tagsList.forEach((tag) => {
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = `chip ${tagFilter === tag ? 'active' : ''}`
+    btn.textContent = tag
+    btn.addEventListener('click', () => {
+      tagFilter = tag
+      render()
+    })
+    tagRow.append(btn)
+  })
+}
+
 const render = () => {
   const query = (searchInput.value || '').toLowerCase().trim()
-  const type = typeFilter.value
 
   const filtered = items.filter((item) => {
-    if (type !== 'all' && item.type !== type) return false
+    const tags = getItemTags(item)
+    if (tagFilter !== 'all' && !tags.includes(tagFilter)) return false
     if (!query) return true
-    const haystack = [item.title, item.creator, ...(item.tags || [])]
+    const haystack = [item.title, item.creator, ...(tags || [])]
       .join(' ')
       .toLowerCase()
     return haystack.includes(query)
@@ -55,9 +92,23 @@ const render = () => {
 
     const meta = document.createElement('div')
     meta.className = 'meta'
-    meta.textContent = [typeLabel(item.type), item.creator].filter(Boolean).join(' · ')
+    const label = primaryLabel(item.primaryTag || getItemTags(item)[0])
+    meta.textContent = [label, item.creator].filter(Boolean).join(' · ')
 
     card.append(cover, title, meta)
+
+    const tags = getItemTags(item)
+    if (tags.length) {
+      const chipList = document.createElement('div')
+      chipList.className = 'chip-list'
+      tags.forEach((tag) => {
+        const chip = document.createElement('span')
+        chip.className = 'chip small'
+        chip.textContent = tag
+        chipList.append(chip)
+      })
+      card.append(chipList)
+    }
 
     if (item.note) {
       const note = document.createElement('div')
@@ -68,6 +119,8 @@ const render = () => {
 
     grid.append(card)
   })
+
+  buildTagRow()
 }
 
 const load = async () => {
@@ -84,6 +137,5 @@ const load = async () => {
 }
 
 searchInput.addEventListener('input', render)
-typeFilter.addEventListener('change', render)
 
 load()
