@@ -1,21 +1,6 @@
 {
   "items": [
     {
-      "id": "34d95657-d16c-48c4-adba-cb79bc6b07d6",
-      "primaryTag": "book",
-      "title": "修那之旅",
-      "creator": "",
-      "year": 2024,
-      "tags": [
-        "book"
-      ],
-      "images": [
-        "https://www.tohan.com.tw/data/goods/gallery_org/202411/1732263975000382862.jpg"
-      ],
-      "note": "",
-      "barcode": "9786263794153"
-    },
-    {
       "id": "6aa470ba-ef8d-401d-8021-8939b642c00c",
       "primaryTag": "book",
       "title": "搭下一班巴士離開",
