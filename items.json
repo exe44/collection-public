@@ -2,6 +2,7 @@
   "items": [
     {
       "id": "34d95657-d16c-48c4-adba-cb79bc6b07d6",
+      "primaryTag": "book",
       "title": "修那之旅",
       "creator": "",
       "year": 2024,
@@ -16,6 +17,7 @@
     },
     {
       "id": "6aa470ba-ef8d-401d-8021-8939b642c00c",
+      "primaryTag": "book",
       "title": "搭下一班巴士離開",
       "creator": "Lawrence Block",
       "year": 2016,
@@ -30,6 +32,7 @@
     },
     {
       "id": "bd330ae3-b0e6-4cfa-affe-1af78f8e12ba",
+      "primaryTag": "music",
       "title": "First Love",
       "creator": "Utada Hikaru",
       "year": "1999",
@@ -45,6 +48,7 @@
     },
     {
       "id": "792e9f12-ce6e-4669-8984-5b51a57a493b",
+      "primaryTag": "book",
       "title": "道士下山",
       "creator": "徐皓峰",
       "year": 2009,
@@ -59,6 +63,7 @@
     },
     {
       "id": "5dc4d0f3-f3e1-4bb4-8a52-53cecead6414",
+      "primaryTag": "music",
       "title": "Departure Songs",
       "creator": "Hammock",
       "year": "2013",
@@ -75,6 +80,7 @@
     },
     {
       "id": "39557e51-8c4c-4625-b342-7b0e8244f06c",
+      "primaryTag": "book",
       "title": "刀背藏身",
       "creator": "徐皓峰",
       "year": 2017,
@@ -89,6 +95,7 @@
     },
     {
       "id": "37f8cae9-5c52-494c-8ed8-56bdf5efcc52",
+      "primaryTag": "book",
       "title": "史托納",
       "creator": "John Williams",
       "year": 2025,
@@ -103,6 +110,7 @@
     },
     {
       "id": "1b5b9ca9-7fbd-401e-8410-80e790a6c633",
+      "primaryTag": "music",
       "title": "Two Of A Mind",
       "creator": "Paul Desmond / Gerry Mulligan",
       "year": "1976",
