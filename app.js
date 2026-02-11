@@ -3,7 +3,6 @@ const empty = document.getElementById('empty')
 const searchInput = document.getElementById('search')
 const tagRow = document.getElementById('tagRow')
 const dataMeta = document.querySelector('meta[name="collection-data-url"]')
-const fallbackDataMeta = document.querySelector('meta[name="collection-data-fallback-url"]')
 const mediaBaseMeta = document.querySelector('meta[name="collection-media-base-url"]')
 
 let items = []
@@ -11,7 +10,6 @@ let tagFilter = 'all'
 const mediaBaseUrl = (mediaBaseMeta?.getAttribute('content') || '').trim()
 const dataSources = Array.from(new Set([
   (dataMeta?.getAttribute('content') || '').trim(),
-  (fallbackDataMeta?.getAttribute('content') || '').trim(),
   './items.json',
 ].filter(Boolean)))
 
