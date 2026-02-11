@@ -2,9 +2,14 @@ const grid = document.getElementById('grid')
 const empty = document.getElementById('empty')
 const searchInput = document.getElementById('search')
 const tagRow = document.getElementById('tagRow')
+const dataMeta = document.querySelector('meta[name="collection-data-url"]')
 
 let items = []
 let tagFilter = 'all'
+const dataSources = [
+  (dataMeta?.getAttribute('content') || '').trim(),
+  './items.json',
+].filter(Boolean)
 
 const primaryLabel = (tag) => {
   switch (tag) {
@@ -84,8 +89,9 @@ const render = () => {
 
     const cover = document.createElement('div')
     cover.className = 'image'
-    if (item.images && item.images.length) {
-      cover.style.backgroundImage = `url(${item.images[0]})`
+    const firstImage = getPrimaryImage(item)
+    if (firstImage) {
+      cover.style.backgroundImage = `url(${firstImage})`
     }
 
     const title = document.createElement('div')
@@ -125,16 +131,32 @@ const render = () => {
   buildTagRow()
 }
 
+const getPrimaryImage = (item) => {
+  if (Array.isArray(item.images) && item.images.length) {
+    return item.images[0]
+  }
+  if (Array.isArray(item.imageRefs) && item.imageRefs.length) {
+    const firstRef = item.imageRefs.find((ref) => ref?.url)
+    if (firstRef?.url) return firstRef.url
+  }
+  return ''
+}
+
 const load = async () => {
-  try {
-    const response = await fetch('./items.json', { cache: 'no-store' })
-    if (!response.ok) throw new Error('items.json not found')
-    const data = await response.json()
-    items = data.items || []
-  } catch (error) {
-    items = []
+  for (const source of dataSources) {
+    try {
+      const response = await fetch(source, { cache: 'no-store' })
+      if (!response.ok) throw new Error(`fetch failed (${response.status})`)
+      const data = await response.json()
+      items = Array.isArray(data?.items) ? data.items : []
+      render()
+      return
+    } catch (error) {
+      // try next source
+    }
   }
 
+  items = []
   render()
 }
 
