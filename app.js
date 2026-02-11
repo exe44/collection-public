@@ -3,13 +3,17 @@ const empty = document.getElementById('empty')
 const searchInput = document.getElementById('search')
 const tagRow = document.getElementById('tagRow')
 const dataMeta = document.querySelector('meta[name="collection-data-url"]')
+const fallbackDataMeta = document.querySelector('meta[name="collection-data-fallback-url"]')
+const mediaBaseMeta = document.querySelector('meta[name="collection-media-base-url"]')
 
 let items = []
 let tagFilter = 'all'
-const dataSources = [
+const mediaBaseUrl = (mediaBaseMeta?.getAttribute('content') || '').trim()
+const dataSources = Array.from(new Set([
   (dataMeta?.getAttribute('content') || '').trim(),
+  (fallbackDataMeta?.getAttribute('content') || '').trim(),
   './items.json',
-].filter(Boolean)
+].filter(Boolean)))
 
 const primaryLabel = (tag) => {
   switch (tag) {
@@ -133,14 +137,32 @@ const render = () => {
 
 const getPrimaryImage = (item) => {
   if (Array.isArray(item.images) && item.images.length) {
-    return item.images[0]
+    return resolveImageUrl(item.images[0])
   }
   if (Array.isArray(item.imageRefs) && item.imageRefs.length) {
-    const firstRef = item.imageRefs.find((ref) => ref?.url)
-    if (firstRef?.url) return firstRef.url
+    const firstRef = item.imageRefs.find((ref) => ref?.url || ref?.key)
+    if (firstRef?.url) return resolveImageUrl(firstRef.url)
+    if (firstRef?.key) return resolveMediaKey(firstRef.key)
   }
   return ''
 }
+
+const resolveImageUrl = (value) => {
+  if (typeof value !== 'string' || !value) return ''
+  if (value.startsWith('data:image/')) return value
+  if (value.startsWith('http://') || value.startsWith('https://')) return value
+  if (!mediaBaseUrl) return value
+  return joinUrl(mediaBaseUrl, value)
+}
+
+const resolveMediaKey = (key) => {
+  if (typeof key !== 'string' || !key) return ''
+  if (!mediaBaseUrl) return ''
+  const normalized = key.replace(/^\/+/, '')
+  return joinUrl(mediaBaseUrl, normalized)
+}
+
+const joinUrl = (base, path) => `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`
 
 const load = async () => {
   for (const source of dataSources) {
